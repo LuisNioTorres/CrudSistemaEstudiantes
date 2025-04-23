@@ -1,5 +1,13 @@
 <?php
 include('./header.php');
+
+if(isset($_GET["id"])){
+    echo "EDITAR ESTUDIANTE".$_GET["id"];
+} else {
+    echo "AGREGAR ESTUDIANTE";
+}
+
+
 ?>
 
 <main>
