@@ -5,6 +5,148 @@
 }
 
 
+/** 
+
+PARRAFO E INPUTS EN GENERAL STYLES
+
+******** */
+p{
+    margin: 0;
+}
+
+input{
+    border: none;
+    outline: none;
+}
+
+
+:root{
+    --color-correcto : rgb(105, 192, 105);
+    --color-incorrecto: rgb(231, 106, 106);
+    --color-gris-suave: rgb(70, 69, 69);
+}
+
+
+
+
 .container{
     margin-top: 10px;
+}
+
+
+
+
+
+
+/******
+
+ESTILOS DE FORMULARIO STARTS HERE 
+
+******/
+main{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.formulario{
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 35px;
+    background-color: rgb(228, 224, 224);
+    width: 80%;
+    max-width: 700px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.grupo__input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+}
+
+.grupo__input>label{
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+    padding: 2px;
+}
+
+.grupo__input>input{
+    padding: 5px;
+    transition: 0.2s;
+}
+
+.grupo__input>input:focus{
+    border: 2px solid #4A90E2; /* azul clarito (puedes cambiarlo) */
+    box-shadow: 0 0 5px 2px rgba(74, 144, 226, 0.5); /* sombra azul suave */
+}
+
+.mensaje__error{
+    font-size: 14px;
+    color:var(--color-incorrecto);
+    font-weight: 700;
+    display: none;
+}
+
+.formulario__boton_enviar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.boton_enviar{
+    border: none;
+    outline: none;
+    background-color: black;
+    width: 60%;
+    font-size: 18px;
+    padding: 5px 0;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario__mensaje_error,
+.formulario__mensaje_exito{
+    background-color: var(--color-incorrecto);
+    width: 100%;
+    color: var(--color-gris-suave);
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    display: none;
+}
+
+
+.formulario__mensaje_exito{
+    background-color: var(--color-correcto);
+}
+
+.formulario__mensaje_exito.active,
+.formulario__mensaje_error.active{
+    display: block;
+}
+
+.mensaje__error.active{
+    display: block;
+}
+
+.grupo__input.incorrecto>input{
+    border: solid 2px var(--color-incorrecto);
+}
+
+.grupo__input.correcto>input{
+    border: solid 2px var(--color-correcto);
 }
