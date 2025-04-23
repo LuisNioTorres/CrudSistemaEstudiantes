@@ -17,50 +17,27 @@ include('./header.php');
             </tr>
         </thead>
         <tbody>
+            <?php
+            //NECESITO UNA CONSULTA SQL, UNA VARIABLE PARA GUARDAR LOS RESULTADOS, Y UN WHILE
+            $sql = 'SELECT * FROM estudiante';
+            $resultados = $conn->query($sql);
+            while($estudiante = $resultados->fetch_assoc()){
+            ?>
             <tr>
-                <td>hola.png</td>
-                <td>Computacion</td>
-                <td>1</td>
-                <td>0953559192</td>
-                <td>Torres Pereira Luis Antonio</td>
+                <td><?php echo $estudiante["foto"];?></td>
+                <td><?php echo $estudiante["id_carrera"];?></td>
+                <td><?php echo $estudiante["id_estudiante"];?></td>
+                <td><?php echo $estudiante["cedula"];?></td>
+                <td><?php echo $estudiante["nombre"]." ".$estudiante["apellido"];?></td>
                 <td>
-                    <button class="btn btn-success" value="editar">Editar</button>
-                    <button class="btn btn-danger" value="editar">Eliminar</button>
+                    <input type="button" value="Editar" class="btn btn-success" name="boton_editar">
+                    <input type="button" value="Eliminar" class="btn btn-danger" name="boton_eliminar">
                 </td>
             </tr>
-            <tr>
-                <td>hola.png</td>
-                <td>Computacion</td>
-                <td>1</td>
-                <td>0953559192</td>
-                <td>Torres Pereira Luis Antonio</td>
-                <td>
-                    <button class="btn btn-success" value="editar">Editar</button>
-                    <button class="btn btn-danger" value="editar">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>hola.png</td>
-                <td>Computacion</td>
-                <td>1</td>
-                <td>0953559192</td>
-                <td>Torres Pereira Luis Antonio</td>
-                <td>
-                    <button class="btn btn-success" value="editar">Editar</button>
-                    <button class="btn btn-danger" value="editar">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>hola.png</td>
-                <td>Computacion</td>
-                <td>1</td>
-                <td>0953559192</td>
-                <td>Torres Pereira Luis Antonio</td>
-                <td>
-                    <button class="btn btn-success" value="editar">Editar</button>
-                    <button class="btn btn-danger" value="editar">Eliminar</button>
-                </td>
-            </tr>
+            <?php
+            }
+            ?>
+            
         </tbody>
     </table>
 
