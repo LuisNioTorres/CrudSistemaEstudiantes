@@ -51,4 +51,13 @@ function obtenerCarreras () {
 
 }
 
+function obtenerEstudiante ($id) {
+    $conn = conectardb();
+    $sql = "SELECT * 
+    FROM estudiante e
+    WHERE e.id_estudiante = ".$id;
+    $resultado = $conn->query($sql);
+    $estudiante = $resultado->fetch_assoc();
+    return $estudiante;
+}
 ?>

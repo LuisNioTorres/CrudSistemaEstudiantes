@@ -32,7 +32,7 @@ include('./header.php');
                 <td><?php echo $estudiante["cedula"];?></td>
                 <td><?php echo $estudiante["nombre"]." ".$estudiante["apellido"];?></td>
                 <td>
-                    <a href="formulario.php?id=1" class="btn btn-success">
+                    <a href="formulario.php?id=<?php echo $estudiante["id_estudiante"]; ?>" class="btn btn-success">
                         Editar
                     </a>
                     <input type="button" value="Eliminar" class="btn btn-danger" name="boton_eliminar">
