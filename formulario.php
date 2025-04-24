@@ -1,12 +1,19 @@
 <?php
 include('./header.php');
+include('./funciones.php');
 
-if(isset($_GET["id"])){
-    echo "EDITAR ESTUDIANTE".$_GET["id"];
-} else {
-    echo "AGREGAR ESTUDIANTE";
-}
+$carreras = obtenerCarreras();
 
+
+if(isset($_POST["boton_enviar"])){
+    if(isset($_GET["id"])){
+        echo "EDITAR ESTUDIANTE".$_GET["id"];
+        $id = $_GET["id"];
+        //AQUI SE DEBE OBTENER AL ESTUDIANTE;
+    } else {
+        echo "AGREGAR ESTUDIANTE";
+    }
+} 
 
 ?>
 
@@ -16,6 +23,7 @@ if(isset($_GET["id"])){
     <div class="formulario__grupo" id="grupo__imagen">
         <div class="grupo__input">
             <label for="imagen">Foto:</label>
+            <img src="" alt="" class="imagen">
             <input type="file" name="imagen" id="imagen">
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
@@ -49,8 +57,13 @@ if(isset($_GET["id"])){
         <div class="grupo__input">
             <label for="carrera">Carrera:</label>
             <select>
-                <option value="1">Ingenieria</option>
-                <option value="2">Civil</option>
+                <?php
+                foreach ($carreras as $carrera) {
+                ?>
+                <option value="<?= $carrera['id']?>"><?php echo $carrera['id']." ".$carrera['nombre']; ?></option>
+                <?php
+                }
+                ?>
             </select>
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
@@ -61,7 +74,7 @@ if(isset($_GET["id"])){
     </div>
 
     <div class="formulario__grupo formulario__boton_enviar">
-        <input type="submit" value="Enviar" class="boton_enviar">
+        <input type="submit" value="Enviar" class="boton_enviar" name="boton_enviar">
         <div class="formulario__mensaje_exito"><p>El formulario se envió correctamente</p></div>
     </div>
 
