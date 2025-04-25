@@ -60,4 +60,38 @@ function obtenerEstudiante ($id) {
     $estudiante = $resultado->fetch_assoc();
     return $estudiante;
 }
+
+function agregarEstudiante ($cedula,$foto,$nombre,$apellido,$fecha_nacimiento,$id_carrera) {
+    $conn = conectardb();
+    $sql = "INSERT INTO `estudiante` 
+            (`id_estudiante`, `cedula`, `foto`, `nombre`, `apellido`, `fecha_nacimiento`, `id_carrera`) 
+            VALUES 
+            (NULL, '".$cedula."', '".$foto."', '".$nombre."', '".$apellido."', '".$fecha_nacimiento."', '".$id_carrera."')";
+
+    //Simple Validacion
+    if($conn->query($sql) === TRUE) echo "Estudiante Agregado correctamente";
+    else echo "Error en Agregar estudiante".$conn->error; 
+
+}
+
+function editarEstudiante ($id,$cedula,$foto,$nombre,$apellido,$fecha_nacimiento,$id_carrera){
+    $conn = conectardb();
+    $sql = "UPDATE `estudiante` 
+            SET `cedula`='".$cedula."',`foto`='".$cedula."',`nombre`='".$nombre."',
+                `apellido`='".$apellido."',`fecha_nacimiento`='".$fecha_nacimiento."',`id_carrera`='".$id_carrera."' 
+            WHERE `id_estudiante` = ".$id."";
+
+    if($conn->query($sql)===TRUE) echo "Estudiante editado Correctamente";
+    else echo "Error al editar estudiante";
+}
+
+function eliminarEstudiante($id){
+    $conn = conectardb();
+    $sql = "DELETE FROM estudiante WHERE id_estudiante =".$id;
+    
+    if($conn->query($sql)===TRUE) echo "ESTUDIANTE ELIMINADO CORRECTAMENTE";
+    else "ERROR AL ELIMINAR" . $conn->error;
+
+
+}
 ?>

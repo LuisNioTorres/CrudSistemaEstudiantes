@@ -4,25 +4,51 @@ include('./funciones.php');
 
 $carreras = obtenerCarreras();
 
+$foto = isset($_POST["foto"]) ? $_POST["foto"] : " ";
+$cedula = isset($_POST["cedula"]) ? $_POST["cedula"] : " ";
+$nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : " ";
+$apellido = isset($_POST["apellido"]) ? $_POST["apellido"] : " ";
+$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : " ";
+$carrera = isset($_POST["carrera"]) ? $_POST["carrera"] : " ";
 $estudiante;
+
 
 
 //AQUI SE DEBE OBTENER AL ESTUDIANTE;
 if(isset($_GET["id"])){
     $id = $_GET["id"];
-    echo "id".$id;
     $estudiante = obtenerEstudiante($id);
-    //print_r($estudiante);
 }
 
 
 if(isset($_POST["boton_enviar"])){
     if(isset($_GET["id"])){
-        echo "EDITAR ESTUDIANTE".$_GET["id"];
+        //AQUI LA LOGICA DE EDITAR ESTUDIANTE;
+        editarEstudiante($id,
+                         $cedula,
+                         $foto,
+                         $nombre,
+                         $apellido,
+                         $fecha,
+                         $carrera);
+        //Actualizar la informacion del estudiante en el formulario cuando lo edito;
+
+        $estudiante = obtenerEstudiante($id);
+
     } else {
         echo "AGREGAR ESTUDIANTE";
+        agregarEstudiante($cedula,
+                          $foto,
+                          $nombre,
+                          $apellido,
+                          $fecha,
+                          $carrera);
     }
 } 
+
+
+
+
 
 ?>
 
@@ -34,6 +60,14 @@ if(isset($_POST["boton_enviar"])){
             <label for="imagen">Foto:</label>
             <img src="" alt="" class="imagen">
             <input type="file" name="imagen" id="imagen">
+            <div class="mensaje__error">Coloca bien la informacion</div>
+        </div>
+    </div>
+
+    <div class="formulario__grupo" id="grupo__cedula">
+        <div class="grupo__input">
+            <label for="cedula">cedula:</label>
+            <input type="text" name="cedula" id="cedula" value="<?php echo (isset ($estudiante["cedula"])? $estudiante["cedula"] : "" ); ?>">
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
     </div>
@@ -57,7 +91,7 @@ if(isset($_POST["boton_enviar"])){
     <div class="formulario__grupo" id="grupo__fecha">
         <div class="grupo__input">
             <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha"  value="<?php echo (isset ($estudiante["fecha_nacimiento"])? $estudiante["fecha_nacimiento"] : "" ); ?>">
+            <input type="date" name="fecha" id="fecha"  value="<?php echo (isset ($estudiante["fecha_nacimiento"])? $estudiante["fecha_nacimiento"] : "" ); ?>" required>
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
     </div>
@@ -65,7 +99,7 @@ if(isset($_POST["boton_enviar"])){
     <div class="formulario__grupo" id="grupo__carrera">
         <div class="grupo__input">
             <label for="carrera">Carrera:</label>
-            <select>
+            <select name="carrera" required>
                 <?php
                 foreach ($carreras as $carrera) {
                 ?>
