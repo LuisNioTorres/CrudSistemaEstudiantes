@@ -34,7 +34,7 @@ if(isset($_GET["accion"])){
             while ($estudiante = $resultados->fetch_assoc()) {
             ?>
                 <tr>
-                    <td><?php echo $estudiante["foto"]; ?></td>
+                    <td><img width="100px" src="./Imagenes/<?php echo $estudiante["foto"]; ?>" alt=""></td>
                     <td><?php echo $estudiante["nombre_carrera"]; ?></td>
                     <td><?php echo $estudiante["id_estudiante"]; ?></td>
                     <td><?php echo $estudiante["cedula"]; ?></td>

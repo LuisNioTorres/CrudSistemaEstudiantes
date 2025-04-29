@@ -4,12 +4,12 @@ include('./funciones.php');
 
 $carreras = obtenerCarreras();
 
-$foto = isset($_POST["foto"]) ? $_POST["foto"] : " ";
-$cedula = isset($_POST["cedula"]) ? $_POST["cedula"] : " ";
-$nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : " ";
-$apellido = isset($_POST["apellido"]) ? $_POST["apellido"] : " ";
+$foto = isset($_FILES["imagen"]["name"]) ? $_FILES["imagen"]["name"] : "";
+$cedula = isset($_POST["cedula"]) ? $_POST["cedula"] : "";
+$nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : "";
+$apellido = isset($_POST["apellido"]) ? $_POST["apellido"] : "";
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : " ";
-$carrera = isset($_POST["carrera"]) ? $_POST["carrera"] : " ";
+$carrera = isset($_POST["carrera"]) ? $_POST["carrera"] : "";
 $estudiante;
 
 
@@ -54,12 +54,12 @@ if(isset($_POST["boton_enviar"])){
 
 <main>
 
-<form action="" method="post" class="formulario">
+<form action="" method="post" class="formulario" enctype="multipart/form-data">
     <div class="formulario__grupo" id="grupo__imagen">
         <div class="grupo__input">
             <label for="imagen">Foto:</label>
-            <img src="" alt="" class="imagen">
-            <input type="file" name="imagen" id="imagen">
+            <img width="100px" src="./Imagenes/<?php echo $estudiante["foto"]; ?>" alt="" class="formulario_imagen">
+            <input type="file" accept="image/*" name="imagen" id="imagen">
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
     </div>
@@ -91,7 +91,7 @@ if(isset($_POST["boton_enviar"])){
     <div class="formulario__grupo" id="grupo__fecha">
         <div class="grupo__input">
             <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha"  value="<?php echo (isset ($estudiante["fecha_nacimiento"])? $estudiante["fecha_nacimiento"] : "" ); ?>" required>
+            <input type="date" name="fecha" id="fecha"  value="<?php echo (isset ($estudiante["fecha_nacimiento"])? $estudiante["fecha_nacimiento"] : "" ); ?>">
             <div class="mensaje__error">Coloca bien la informacion</div>
         </div>
     </div>
