@@ -70,6 +70,7 @@ main{
     width: 100%;
     max-width: 500px;
     height: max-content;
+    min-height: 120px;
 }
 
 .grupo__input>label{
@@ -140,6 +141,9 @@ main{
 }
 
 .mensaje__error.active{
+    font-size: 14px;
+    color:var(--color-incorrecto);
+    font-weight: 700;
     display: block;
 }
 
